@@ -1,18 +1,89 @@
-Service: payment-service
-Metrics: "response_time_ms" "cpu_percent" "memory_percent"
-Logs: log-level, message
-Timestamps identify event time and order
-10:05: high response time and error log
-10:06: high response time, CPU, memory, and error log
+Updated todo list
 
-Flow-> detector-> producer->topic->consumer->AIOPS
+Updated todo list
 
-Issues Solved->
-Error 1-> we are detecting only warning but error also have anomaloies
-sol-># both warning and  error are detected now 
+Task 1: Set Up and Understand
 
-Error 2 and 3->producer and consumer is calling different topics due to which consumer will not able to get relative data of producer 
-sol->same topics will used by producer and consumer 
+This project monitors payment-service. It checks service performance and detects payment timeouts, database errors, high CPU and high memory usage.
 
+Main files:
 
+service_data.json: operational data
 
+anomaly_detector.py: anomaly detection
+
+event_producer.py: event producer
+
+event_topic.py: event topic
+
+event_consumer.py: event consumer
+
+aiops_pipeline.py: complete workflow
+
+Task 2: Analyse Data
+
+Metrics are response_time_ms, cpu_percent and memory_percent.
+
+Log fields are log_level and message.
+
+Timestamps show when each event happened and keep the data in order.
+
+Records from 10:00 to 10:04 and 10:07 to 10:09 were normal.
+
+The 10:05 record had a high response time and payment timeout error.
+
+The 10:06 record had high response time, CPU, memory and a database timeout error.
+
+Task 3: Identify Anomalies
+
+Two anomalies were detected:
+
+10:05: high response time and error log.
+
+10:06: high response time, high CPU, high memory and error log.
+
+Normal records were not flagged.
+
+The detector uses fixed thresholds, so it may miss gradual problems.
+
+Task 4: Verify Event Flow
+
+The flow is:
+
+Data -> Detector -> Event -> Producer -> Topic -> Consumer -> AIOps
+
+The producer publishes events, the topic stores them and the consumer receives them.
+
+Task 5: Fix Workflow
+
+The detector was checking only WARNING logs. It was changed to check both WARNING and ERROR.
+
+The producer and consumer were using different topic objects. They were changed to use the same anomaly-events topic.
+
+Task 6: Run Pipeline
+
+Command used:
+
+python3 `aiops_pipeline.py`
+
+Result:
+
+10 records processed
+
+2 anomalies detected
+
+2 events consumed
+
+Task 7: Test and Reproduce
+
+Run the pipeline from the project root:
+
+python3 `aiops_pipeline.py`
+
+Run all tests:
+
+python3 -m pytest
+
+Test result:
+
+8 passed
