@@ -34,6 +34,29 @@ The 10:05 record had a high response time and payment timeout error.
 
 The 10:06 record had high response time, CPU, memory and a database timeout error.
 
+RESULT->
+==================================================
+AIOps Pipeline Result
+==================================================
+Records processed: 10
+Anomalies detected: 2
+Events consumed: 2
+
+Detected Events:
+
+Service: payment-service
+Timestamp: 2026-09-20T10:05:00
+Type: ANOMALY
+Reasons: High response time, Concerning log event
+
+Service: payment-service
+Timestamp: 2026-09-20T10:06:00
+Type: ANOMALY
+Reasons: High response time, High CPU utilization, High memory utilization, Concerning log event
+
+
+
+
 Task 3: Identify Anomalies
 
 Two anomalies were detected:
