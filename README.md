@@ -1,18 +1,18 @@
-# GitHub Challenge
+Service: payment-service
+Metrics: "response_time_ms" "cpu_percent" "memory_percent"
+Logs: log-level, message
+Timestamps identify event time and order
+10:05: high response time and error log
+10:06: high response time, CPU, memory, and error log
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+Flow-> detector-> producer->topic->consumer->AIOPS
 
-Hey there!
+Issues Solved->
+Error 1-> we are detecting only warning but error also have anomaloies
+sol-># both warning and  error are detected now 
 
-Your challenge is ready.
-Follow the instructions provided for this challenge and complete the required tasks in this repository.
-
-Make sure your work is committed and pushed to your repository before submission.
-
-Good luck!
+Error 2 and 3->producer and consumer is calling different topics due to which consumer will not able to get relative data of producer 
+sol->same topics will used by producer and consumer 
 
 
----
-
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
