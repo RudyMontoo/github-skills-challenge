@@ -77,6 +77,8 @@ Data -> Detector -> Event -> Producer -> Topic -> Consumer -> AIOps
 
 The producer publishes events, the topic stores them and the consumer receives them.
 
+
+
 Task 5: Fix Workflow
 
 The detector was checking only WARNING logs. It was changed to check both WARNING and ERROR.
@@ -98,6 +100,16 @@ Result:
 2 events consumed
 
 Task 7: Test and Reproduce
+============================================================ test session starts ============================================================
+platform linux -- Python 3.13.15, pytest-8.4.1, pluggy-1.6.0
+rootdir: /workspaces/github-skills-challenge
+plugins: cov-7.1.0
+collected 8 items                                                                                                                           
+
+tests/calculations_test.py ....                                                                                                       [ 50%]
+tests/test_aiops_pipeline.py ....                                                                                                     [100%]
+
+============================================================= 8 passed in 0.08s =============================================================
 
 Run the pipeline from the project root:
 
